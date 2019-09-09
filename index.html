@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Dialogflow for Web v2</title>
+        <meta name="description" content="Dialogflow unofficial Progressive Web App">
+        <link rel="canonical" href="https://i.ushakov.co/dialogflow-web-v2" />
+
+        <!-- Mobile Stuff -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="msapplication-tap-highlight" content="no">
+
+        <!-- Google Chrome -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="Dialogflow for Web v2">
+        <link rel="icon" href="assets/manifest_icons/web_hi_res_512.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#FFFFFF">
+
+        <!-- Safari -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Dialogflow for Web v2">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <link rel="apple-touch-icon" href="assets/manifest_icons/web_hi_res_512.png">
+
+        <!-- OpenGraph -->
+        <meta property="og:title" content="Dialogflow for Web v2">
+        <meta property="og:image" content="https://imgur.com/YkOoS4h.png">
+        <meta property="og:description" content="Dialogflow unofficial Progressive Web App">
+        <meta property="og:url" content="https://i.ushakov.co/dialogflow-web-v2">
+        <meta property="og:type" content="website" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Dialogflow for Web v2" />
+        <meta name="twitter:image" content="https://i.imgur.com/YkOoS4h.png" />
+        <meta name="twitter:description" content="Dialogflow unofficial Progressive Web App" />
+
+        <!-- Windows 8 -->
+        <meta name="msapplication-TileImage" content="assets/manifest_icons/web_hi_res_512.png">
+        <meta name="msapplication-TileColor" content="#FFFFFF">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="dist/build.js"></script>
+        <noscript>
+            <h1>:(</h1>
+            <p>Hello, it looks like your JavaScript is disabled, please enable it, since the page can't render without it</p>
+        </noscript>
+    </body>
+
+    <script>
+        
+                
+                
+                    var numItems = 0;
+                    var init = false;
+                    
+                        $(document).ready(function () {
+                            
+                          if (localStorage.getItem('init') == 'true')
+                          {
+                            localStorage.setItem('init', 'false');
+                            console.log(localStorage.getItem('init'));
+                            localStorage.removeItem('message_history');
+                            document.location.reload(true);
+                          }     
+                        });
+                
+                        var counter = 0;
+                        var timer = setInterval(function () {
+                            var numItemsAtual = $('.bubble').length;
+                            texts = $('.bubble[data-v-147367e9]');
+                            var atual = "";
+                            var deleted = "";
+                            for (var i = 0; i < texts.length+1; i++) {
+                              deleted = texts[i].textContent;
+                              if (atual === texts[i].textContent){
+                                console.log(texts[i].textContent);
+                                var deleted = texts[i].textContent;
+                                texts[i].style.display = 'none';
+                                i = i + 1;
+                                console.log(texts.length);
+                              }
+                              atual = deleted;
+                            }
+                            if (counter >= 300) {
+                              localStorage.removeItem('message_history');
+                            var elem = $('.bubble');
+                            for (var i = 0; i < elem.length; i++) {
+                              elem[i].style.display = 'none';
+                            }
+                          
+                            counter = 0;
+                            document.location.reload(true);
+                          }
+                          if (numItemsAtual > numItems) {
+                            localStorage.setItem('init', 'true');
+                            numItems = numItemsAtual;
+                            counter = 0;
+                          }
+
+                          
+                        }, 1000);
+                
+                
+                </script>
+            
+</html>
